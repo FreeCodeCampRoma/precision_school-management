@@ -242,6 +242,8 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+# Substitute custom auth model
+AUTH_USER_MODEL = 'accounts.SchoolAdministrator'
 
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
