@@ -9,10 +9,9 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
 
-    # Custom urls
-
+    # Custom url patterns
+    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
     url(r'^', include('pages.urls', namespace='pages')),
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
