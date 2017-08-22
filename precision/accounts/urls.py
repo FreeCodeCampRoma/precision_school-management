@@ -24,5 +24,4 @@ urlpatterns = [
         view=logout_then_login,
         name='logout_then_login'
     ),
-
 ]
