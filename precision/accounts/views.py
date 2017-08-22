@@ -7,9 +7,9 @@ from .forms import LoginForm
 
 
 class SignInView(TemplateResponseMixin, View):
+    template_name = 'accounts/sign_in.html'
 
     def get(self, request):
-        template_name = 'accounts/sign_in.html'
         form = LoginForm()
         context = {'section': 'sign_in', 'form': form}
         return self.render_to_response(context)
