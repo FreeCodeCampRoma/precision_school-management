@@ -7,6 +7,6 @@ urlpatterns = [
     url(
         regex=r'^sign-in/$',
         view=SignInView.as_view(),
-        name='login'
+        name='sign_in'
     ),
 ]
