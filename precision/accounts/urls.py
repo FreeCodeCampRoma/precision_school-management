@@ -3,7 +3,7 @@ from django.contrib.auth.views import (login, logout, logout_then_login,
                                        password_change, password_change_done, password_reset,
                                        password_reset_done, password_reset_confirm, password_reset_complete)
 
-from .views import SignInView
+from .views import RegisterView
 
 urlpatterns = [
 
@@ -22,6 +22,11 @@ urlpatterns = [
     url(r'^logout-then-login/$',
         logout_then_login,
         name='logout_then_login'
+    ),
+
+    url(r'^register/$',
+        RegisterView,
+        name='register'
     ),
 
 

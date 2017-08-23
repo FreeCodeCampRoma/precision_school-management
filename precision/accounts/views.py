@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic.base import TemplateResponseMixin, View
 
-from .forms import LoginForm
+from .forms import LoginForm, SchoolAdministratorRegistrationForm
 
 
 # CODE BELOW THIS LINE IS NOT USED, BUT PRESENT FOR EDUCATION PURPOSES
@@ -38,3 +38,29 @@ class SignInView(TemplateResponseMixin, View):
 # ====================================================================
 
 
+class RegisterView(TemplateResponseMixin, View):
+    template_name = 'registration/register.html',
+
+    def get(self, request):
+        form = SchoolAdministrationRegistrationForm
+        context = {'section': 'register', 'form': form}
+        return self.render_to_response(context)
+
+    def post(self, request):
+        form = SchoolAdministrationRegistrationForm(request.POST)
+        template_name = 'registration/register_done.html'
+
+        if form.is_valid():
+            # Create a new administrator but do not save it yet
+            new_administrator = form.save(commit=False)
+
+            # Set chosen password
+            new_administrator.set_password(form.cleaned_data['password'])
+
+            # Save administrator object
+            new_administrator.save()
+
+            context = {'section': 'register', 'new_administrator': new_administrator}
+            return render(request, template_name, context)
+        else:
+            return redirect('accounts:register')
