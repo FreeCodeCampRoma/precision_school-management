@@ -9,63 +9,57 @@ urlpatterns = [
 
     # Authentication
     # ==============
-    url(
-        regex=r'^login/$',
-        view=login,
+    url(r'^login/$',
+        login,
         name='login'
     ),
 
-    url(
-        regex=r'^logout/$',
-        view=logout,
+    url(r'^logout/$',
+        logout,
         name='logout'
     ),
 
-    url(
-        regex=r'^logout-then-login/$',
-        view=logout_then_login,
+    url(r'^logout-then-login/$',
+        logout_then_login,
         name='logout_then_login'
     ),
 
 
     # Password Change
     # ===============
-    url(
-        regex=r'^password-change/$',
-        view=password_change,
+    url(r'^password-change/$',
+        password_change,
+        {'post_change_redirect': 'accounts:password_change_done'},
         name='password_change'
     ),
 
-    url(
-        regex=r'^password-change/done/$',
-        view=password_change_done,
+    url(r'^password-change/done/$',
+        password_change_done,
         name='password_change_done'
     ),
 
 
     # Password Reset
     # ==============
-    url(
-        regex=r'^password-reset/$',
-        view=password_reset,
-        name='password_reset',
+    url(r'^password-reset/$',
+        password_reset,
+        {'post_reset_redirect': 'accounts:password_reset_done'},
+        name='password_reset'
     ),
 
-    url(
-        regex=r'^password-reset/done/$',
-        view=password_reset_done,
+    url(r'^password-reset/done/$',
+        password_reset_done,
         name='password_reset_done'
     ),
 
-    url(
-        regex=r'^password-reset/confirm/(?P<uidb64>[-\w]+)/(?P<token>[-\w]+)/$',
-        view=password_reset_confirm,
+    url(r'^password-reset/confirm/(?P<uidb64>[-\w]+)/(?P<token>[-\w]+)/$',
+        password_reset_confirm,
+        {'post_reset_redirect': 'accounts:password_reset_complete'},
         name='password_reset_confirm'
     ),
 
-    url(
-        regex=r'^password-reset/complete/$',
-        view=password_reset_complete,
+    url(r'^password-reset/complete/$',
+        password_reset_complete,
         name='password_reset_complete'
     ),
 
