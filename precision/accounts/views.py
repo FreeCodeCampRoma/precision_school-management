@@ -6,6 +6,9 @@ from django.views.generic.base import TemplateResponseMixin, View
 from .forms import LoginForm
 
 
+# CODE BELOW THIS LINE IS NOT USED, BUT PRESENT FOR EDUCATION PURPOSES
+# ====================================================================
+
 class SignInView(TemplateResponseMixin, View):
     template_name = 'accounts/sign_in.html'
 
@@ -31,3 +34,7 @@ class SignInView(TemplateResponseMixin, View):
                 return HttpResponse('Invalid login')
         else:
             return redirect('accounts:sign_in')
+
+# ====================================================================
+
+
