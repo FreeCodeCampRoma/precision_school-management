@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib.auth.views import login, logout, logout_then_login, password_change, password_change_done
-from .views import SignInView
 
+from .views import SignInView
 
 urlpatterns = [
 
