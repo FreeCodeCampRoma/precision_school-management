@@ -6,15 +6,12 @@ from django.views.generic.base import TemplateResponseMixin, View
 from .forms import LoginForm, SchoolAdministratorRegistrationForm
 
 
-# CODE BELOW THIS LINE IS NOT USED, BUT PRESENT FOR EDUCATION PURPOSES
-# ====================================================================
-
-class SignInView(TemplateResponseMixin, View):
-    template_name = 'accounts/sign_in.html'
+class LoginView(TemplateResponseMixin, View):
+    template_name = 'registration/login.html'
 
     def get(self, request):
         form = LoginForm()
-        context = {'section': 'sign_in', 'form': form}
+        context = {'section': 'login', 'form': form}
         return self.render_to_response(context)
 
     def post(self, request):
@@ -22,7 +19,7 @@ class SignInView(TemplateResponseMixin, View):
 
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(email=cd['username'], password=cd['password'])
+            user = authenticate(email=cd['email'], password=cd['password'])
 
             if user is not None:
                 if user.is_active:
@@ -33,11 +30,9 @@ class SignInView(TemplateResponseMixin, View):
             else:
                 return HttpResponse('Invalid login')
         else:
-            return redirect('accounts:sign_in')
+            return redirect('accounts:login')
 
-# ====================================================================
-
-
+        
 class RegisterView(TemplateResponseMixin, View):
     template_name = 'registration/register.html',
 

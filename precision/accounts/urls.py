@@ -3,14 +3,14 @@ from django.contrib.auth.views import (login, logout, logout_then_login,
                                        password_change, password_change_done, password_reset,
                                        password_reset_done, password_reset_confirm, password_reset_complete)
 
-from .views import RegisterView
+from .views import LoginView, RegisterView
 
 urlpatterns = [
 
     # Authentication
     # ==============
     url(r'^login/$',
-        login,
+        LoginView.as_view(),
         name='login'
     ),
 
@@ -25,7 +25,7 @@ urlpatterns = [
     ),
 
     url(r'^register/$',
-        RegisterView,
+        RegisterView.as_view(),
         name='register'
     ),
 
