@@ -10,10 +10,9 @@ Production Configurations
 
 """
 
-from boto.s3.connection import OrdinaryCallingFormat
-
 import logging
 
+from boto.s3.connection import OrdinaryCallingFormat
 
 from .base import *  # noqa
 

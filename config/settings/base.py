@@ -51,6 +51,7 @@ THIRD_PARTY_APPS = [
 # Apps specific for this project go here.
 LOCAL_APPS = [
     'precision.pages.apps.PagesConfig',
+    'precision.accounts.apps.AccountsConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -239,8 +240,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'accounts.authentication.EmailAuthBackend'
 ]
 
+# Substitute custom auth model
+AUTH_USER_MODEL = 'accounts.SchoolAdministrator'
 
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
